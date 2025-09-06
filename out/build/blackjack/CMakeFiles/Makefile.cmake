@@ -37,13 +37,13 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.31.6-msvc6/CMakeRCCompiler.cmake"
   "CMakeFiles/3.31.6-msvc6/CMakeSystem.cmake"
-  "SDL3Config.cmake"
-  "C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3Config.cmake"
-  "C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3headersTargets.cmake"
-  "C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3sharedTargets-release.cmake"
-  "C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3sharedTargets.cmake"
-  "C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3testTargets-release.cmake"
-  "C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3testTargets.cmake"
+  "C:/Users/adamv/Downloads/SDL3-3.2.22/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3Config.cmake"
+  "C:/Users/adamv/Downloads/SDL3-3.2.22/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3ConfigVersion.cmake"
+  "C:/Users/adamv/Downloads/SDL3-3.2.22/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3headersTargets.cmake"
+  "C:/Users/adamv/Downloads/SDL3-3.2.22/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3sharedTargets-release.cmake"
+  "C:/Users/adamv/Downloads/SDL3-3.2.22/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3sharedTargets.cmake"
+  "C:/Users/adamv/Downloads/SDL3-3.2.22/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3testTargets-release.cmake"
+  "C:/Users/adamv/Downloads/SDL3-3.2.22/x86_64-w64-mingw32/lib/cmake/SDL3/SDL3testTargets.cmake"
   )
 
 # The corresponding makefile is:

@@ -21,7 +21,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 )
 
 # Find SDL3
-find_package(SDL3 REQUIRED)
+find_package(SDL3 CONFIG REQUIRED PATHS "${CMAKE_SOURCE_DIR}/external/SDL3/lib/cmake/SDL3")
 target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
 
 # Use SDL main callbacks

@@ -197,7 +197,7 @@ blackjack.exe: CMakeFiles/blackjack.dir/src/Globals.cpp.obj
 blackjack.exe: CMakeFiles/blackjack.dir/src/gameLoop.cpp.obj
 blackjack.exe: CMakeFiles/blackjack.dir/src/main.cpp.obj
 blackjack.exe: CMakeFiles/blackjack.dir/build.make
-blackjack.exe: C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/x86_64-w64-mingw32/lib/libSDL3.dll.a
+blackjack.exe: C:/Users/adamv/Downloads/SDL3-3.2.22/x86_64-w64-mingw32/lib/libSDL3.dll.a
 blackjack.exe: CMakeFiles/blackjack.dir/linkLibs.rsp
 blackjack.exe: CMakeFiles/blackjack.dir/objects1.rsp
 blackjack.exe: CMakeFiles/blackjack.dir/link.txt
