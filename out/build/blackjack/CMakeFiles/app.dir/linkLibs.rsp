@@ -1,0 +1,1 @@
+ "C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/x86_64-w64-mingw32/lib/libSDL3.dll.a" -lstdc++exp -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

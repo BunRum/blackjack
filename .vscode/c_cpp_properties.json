@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Users/adamv/Downloads/SDL3-3.2.22/x86_64-w64-mingw32/include",
+                "${workspaceFolder}/src/Classes"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.26100.0",
+            "cStandard": "c23",
+            "cppStandard": "c++26",
+            "intelliSenseMode": "${default}",
+            "compilerPath": "C:\\msys64\\ucrt64\\bin\\g++.exe"
+        }
+    ],
+    "version": 4
+}
