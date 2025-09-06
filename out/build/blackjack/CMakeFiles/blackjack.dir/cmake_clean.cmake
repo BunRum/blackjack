@@ -13,9 +13,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/blackjack.dir/src/gameLoop.cpp.obj.d"
   "CMakeFiles/blackjack.dir/src/main.cpp.obj"
   "CMakeFiles/blackjack.dir/src/main.cpp.obj.d"
-  "blackjack.exe"
-  "blackjack.exe.manifest"
-  "blackjack.pdb"
+  "Debug/blackjack.exe"
+  "Debug/blackjack.exe.manifest"
+  "Debug/blackjack.pdb"
   "libblackjack.dll.a"
 )
 

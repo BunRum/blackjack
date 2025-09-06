@@ -1,16 +1,24 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.16)
 project(blackjack VERSION 0.1.0 LANGUAGES CXX)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# set the output directory for built objects.
+# This makes sure that the dynamic library goes into the build directory automatically.
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
+
+# This assumes the SDL source is available in vendored/SDL
+add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
+
 # Collect all source files
 file(GLOB_RECURSE SOURCES
     "src/*.cpp"
-    "src/Classes/*.cpp"  # include all cpp files in the classes folder
+    "src/Classes/*.cpp"
 )
-# message(STATUS "Sources: ${SOURCES}")
+
 # Create executable
 add_executable(${PROJECT_NAME} ${SOURCES})
 
@@ -21,12 +29,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 )
 
 # Find SDL3
-find_package(SDL3 CONFIG REQUIRED PATHS "${CMAKE_SOURCE_DIR}/external/SDL3/lib/cmake/SDL3")
 target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
 
 # Use SDL main callbacks
-target_compile_definitions(${PROJECT_NAME} PRIVATE SDL_MAIN_USE_CALLBACKS)
-
-# Optional: static linking and stdc++ experimental lib if needed
-# target_link_options(${PROJECT_NAME} PRIVATE -static)
-# target_link_libraries(${PROJECT_NAME} PRIVATE stdc++exp)
+# target_compile_definitions(${PROJECT_NAME} PRIVATE SDL_MAIN_USE_CALLBACKS)
