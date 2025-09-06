@@ -1,8 +1,0 @@
-C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/blackjack/CMakeFiles/blackjack.dir
-C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/blackjack/CMakeFiles/edit_cache.dir
-C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/blackjack/CMakeFiles/rebuild_cache.dir
-C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/blackjack/vendored/SDL/CMakeFiles/SDL3-shared.dir
-C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/blackjack/vendored/SDL/CMakeFiles/SDL3_test.dir
-C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/blackjack/vendored/SDL/CMakeFiles/SDL_uclibc.dir
-C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/blackjack/vendored/SDL/CMakeFiles/edit_cache.dir
-C:/Users/adamv/Documents/Programming/cpp/blackjack/out/build/blackjack/vendored/SDL/CMakeFiles/rebuild_cache.dir
