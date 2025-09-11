@@ -2,63 +2,99 @@
 
 #include <Globals.hpp>
 #include <cmath>
+#include <format>
+#include <gameLoop.hpp>
 #include <vector>
 
 #include "Model.hpp"
 
-PhysicsObject::PhysicsObject() {
-	GameObjects.push_back(this);
-	className = "PhysicsObject";
-}
-
-float PhysicsObject::getX() const { return rect.x; }
-float PhysicsObject::getY() const { return rect.y; }
-void PhysicsObject::setX(float newX) { rect.x = newX; }
-void PhysicsObject::setY(float newY) { rect.y = newY; }
-
 void PhysicsObject::onGroundHit() {
 	if (hasParent) {
-		SDL_Log("PhysicsObject with parent hit the ground, notifying parent.");
 		if (auto* parentModel = dynamic_cast<Model*>(Parent)) {
 			parentModel->onGroundHit();
+			parentModel->updateChildrenPositions();
 		}
 	} else {
 		// SDL_Log("PhysicsObject without parent hit the ground.");
 		VelocityY = 0;
-        setY(lastY);
+		setY(lastY);
+	}
+}
+
+void PhysicsObject::checkCollisions() {
+	float thisTop = getY();
+	float thisBottom = getY() + Height;
+	float thisLeft = getX();
+	float thisRight = getX() + Width;
+
+	for (auto* _obj : GameObjects) {
+		if (_obj == this) continue;
+		if (auto* other = dynamic_cast<PhysicsObject*>(_obj)) {
+			float otherTop = other->getY();
+			float otherBottom = other->getY() + other->Height;
+			float otherLeft = other->getX();
+			float otherRight = other->getX() + other->Width;
+			const float epsilon = 0.0f;
+			// Expand the other object's bounds slightly to handle edge cases
+
+			bool isNotColliding = (thisBottom <= otherTop + epsilon ||
+								   thisTop >= otherBottom - epsilon ||
+								   thisRight <= otherLeft + epsilon ||
+								   thisLeft >= otherRight - epsilon);
+
+			bool touchingTop = false, touchingBottom = false, touchingLeft = false, touchingRight = false;
+			if (!isNotColliding) {
+				// Collision detected, determine the side of collision
+				float overlapX = (thisLeft < otherLeft) ? thisRight - otherLeft : thisLeft - otherRight;
+				float overlapY = (thisTop < otherTop) ? thisBottom - otherTop : thisTop - otherBottom;
+				if (std::abs(overlapX) < std::abs(overlapY)) {
+					// Horizontal collision
+					VelocityX = 0;
+					setX(lastX);
+					if (overlapX > 0) {
+						touchingLeft = true;
+					} else {
+						touchingRight = true;
+					}
+				} else {
+					// Vertical collision
+					VelocityY = 0;
+					setY(lastY);
+					if (overlapY > 0) {
+						touchingTop = true;
+						onGroundHit();
+					} else {
+						touchingBottom = true;
+					}
+				}
+			}
+			auto Green = {0, 255, 0, 255};
+			auto Red = {0, 0, 0, 0};
+			renderStack.push_back(DrawRequest{1, "Line", {otherLeft, otherTop, otherRight, otherBottom}, touchingTop ? Green : Red});
+		}
 	}
 }
 
 void PhysicsObject::updatePhysics(double deltaTime) {
-	//  Move by current velocity
+	float dt = static_cast<float>(deltaTime);
+
+	// Save last position
 	lastX = getX();
 	lastY = getY();
-	setX(getX() + VelocityX * static_cast<float>(deltaTime));
-	setY(getY() - VelocityY * static_cast<float>(deltaTime));
 
-	//  Compute new velocity
 	if (!Anchored) {
-		VelocityY -= 500.0f * static_cast<float>(deltaTime);  // gravity
-		VelocityX *= pow(0.9f, deltaTime * 60.0f);			  // friction
-		isFalling = VelocityY < 0;
-	}
+		// Apply forces
+		VelocityY -= Gravity * dt;			 // gravity pulls down
+		VelocityX *= pow(Friction, dt * 60.0f);	 // friction
+		isFalling = VelocityY > 0;
 
-	float newX = getX() + VelocityX * static_cast<float>(deltaTime);
-	float newY = getY() - VelocityY * static_cast<float>(deltaTime);
+		// Integrate position
+		newX = lastX + (VelocityX * dt);
+		newY = lastY - (VelocityY * dt);
 
-	//  Detect collisions
-	if (newY > ResY - rect.h) {
-		//  Reset position/velocity
-		if (hasParent) {
-			auto* parentModel = dynamic_cast<Model*>(Parent);
-			parentModel->onGroundHit();
-		} else {
-			VelocityY = 0;
-			setY(ResY - rect.h);
-			onGroundHit();
-		}
-	} else {
 		setX(newX);
 		setY(newY);
+
+		checkCollisions();
 	}
 }

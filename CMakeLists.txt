@@ -20,6 +20,16 @@ file(GLOB_RECURSE SOURCES
     "src/Classes/*.cpp"
 )
 
+add_library(imgui
+    vendored/imgui/imgui.cpp
+    vendored/imgui/imgui_demo.cpp
+    vendored/imgui/imgui_draw.cpp
+    vendored/imgui/imgui_tables.cpp
+    vendored/imgui/imgui_widgets.cpp
+    vendored/imgui/backends/imgui_impl_sdl3.cpp
+    vendored/imgui/backends/imgui_impl_sdlrenderer3.cpp
+)
+
 # Create executable
 add_executable(${PROJECT_NAME} ${SOURCES})
 
@@ -27,10 +37,19 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Classes
     ${CMAKE_CURRENT_SOURCE_DIR}/src
+    vendored/SDL/include          # SDL headers
+    vendored/imgui               # ImGui headers (imgui.h is here)
+    vendored/imgui/backends      # ImGui backends
 )
 
-# Find SDL3
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
+target_include_directories(imgui PRIVATE
+    vendored/imgui
+    vendored/imgui/backends
+    vendored/SDL/include
+)
 
-# Use SDL main callbacks
-# target_compile_definitions(${PROJECT_NAME} PRIVATE SDL_MAIN_USE_CALLBACKS)
+# Link SDL3 to imgui
+target_link_libraries(imgui PRIVATE SDL3::SDL3)
+
+# Link executable to imgui and SDL3
+target_link_libraries(${PROJECT_NAME} PRIVATE imgui SDL3::SDL3)
